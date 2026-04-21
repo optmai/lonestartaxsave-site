@@ -2,208 +2,439 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lone Star Tax Save | Smart Tax-Saving Strategies for Texans</title>
-  <meta name="description" content="Lone Star Tax Save helps Texas families and business owners understand practical tax-saving opportunities. A clean placeholder site for GitHub Pages." />
-  <meta name="theme-color" content="#0f172a" />
-  <link rel="canonical" href="https://lonestartaxsave.com/" />
-  <meta property="og:title" content="Lone Star Tax Save" />
-  <meta property="og:description" content="Smart tax-saving strategies for Texans." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://lonestartaxsave.com/" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LoneStarTaxSave — Property Tax Appeal Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tan:    #f5efe4;
+      --cream:  #fdf8f0;
+      --rust:   #b94c2a;
+      --rust2:  #d95f35;
+      --navy:   #1a2742;
+      --gold:   #c9933a;
+      --mid:    #6b7280;
+      --border: #ddd4c2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ───────────────────────────────────── */
+    header {
+      position: relative;
+      background: var(--navy);
+      padding: 72px 24px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(201,147,58,.06) 40px,
+          rgba(201,147,58,.06) 41px
+        );
+    }
+    /* lone star */
+    header::after {
+      content: '★';
+      position: absolute;
+      top: -40px; right: -30px;
+      font-size: 260px;
+      color: rgba(201,147,58,.07);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .site-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -.5px;
+      position: relative;
+    }
+    .site-name span { color: var(--gold); }
+
+    .tagline {
+      margin-top: 14px;
+      font-size: clamp(.95rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255,255,255,.72);
+      letter-spacing: .5px;
+      position: relative;
+    }
+
+    .star-divider {
+      margin: 28px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+    }
+    .star-divider::before,
+    .star-divider::after {
+      content: '';
+      width: 80px; height: 1px;
+      background: var(--gold);
+      opacity: .5;
+    }
+    .star-divider span { color: var(--gold); font-size: 1.1rem; }
+
+    /* ── VALUE STRIPS ───────────────────────────── */
+    .value-strip {
+      background: var(--rust);
+      padding: 18px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+    }
+    .value-strip p {
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .value-strip p::before { content: '✓'; font-size: 1rem; color: var(--gold); }
+
+    /* ── MAIN LAYOUT ────────────────────────────── */
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    @media (max-width: 700px) {
+      main { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── LEFT COPY ──────────────────────────────── */
+    .copy h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--navy);
+    }
+    .copy h2 em {
+      font-style: normal;
+      color: var(--rust);
+    }
+    .copy p {
+      margin-top: 18px;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--mid);
+    }
+
+    .steps { margin-top: 32px; display: flex; flex-direction: column; gap: 18px; }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-text strong { display: block; font-size: .95rem; color: var(--navy); }
+    .step-text span { font-size: .88rem; color: var(--mid); }
+
+    /* ── FORM CARD ──────────────────────────────── */
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 40px rgba(26,39,66,.08);
+      position: relative;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+      border-radius: 12px 12px 0 0;
+    }
+
+    .form-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .form-card .sub {
+      font-size: .88rem;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+
+    label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .field { margin-bottom: 18px; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .97rem;
+      color: var(--navy);
+      background: var(--cream);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    input:focus {
+      border-color: var(--rust);
+      box-shadow: 0 0 0 3px rgba(185,76,42,.12);
+      background: #fff;
+    }
+
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 14px;
+      background: var(--rust);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: .4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .2s, transform .1s;
+    }
+    .btn:hover { background: var(--rust2); }
+    .btn:active { transform: scale(.98); }
+    .btn .star { color: var(--gold); font-size: 1.1rem; }
+
+    .privacy-note {
+      margin-top: 14px;
+      font-size: .78rem;
+      color: var(--mid);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* ── SUCCESS ────────────────────────────────── */
+    .success-box {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .success-icon {
+      width: 68px; height: 68px;
+      background: #f0faf4;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      border: 2px solid #4caf76;
+    }
+    .success-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .success-box p {
+      font-size: .97rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+    .success-box .hl { color: var(--rust); font-weight: 500; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .82rem;
+    }
+    footer strong { color: rgba(255,255,255,.75); }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Lone Star Tax Save home">
-        <span class="brand-mark">★</span>
-        <span>Lone Star Tax Save</span>
-      </a>
-      <nav class="nav">
-        <a href="#services">Services</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contact" class="nav-cta">Contact</a>
-      </nav>
+
+<header>
+  <p class="site-name">Lone<span>Star</span>TaxSave<span style="color:rgba(255,255,255,.3)">.com</span></p>
+  <p class="tagline">Texas Property Tax Appeal — Simple, Fast, and On Your Side</p>
+  <div class="star-divider"><span>★</span></div>
+</header>
+
+<div class="value-strip">
+  <p>Free Property Assessment</p>
+  <p>No Savings, No Fee</p>
+  <p>Texas Specialists</p>
+  <p>Fast 24-Hour Response</p>
+</div>
+
+<main>
+  <!-- LEFT COPY -->
+  <div class="copy">
+    <h2>Is your property <em>over-appraised?</em><br>Let us fight to lower your tax bill.</h2>
+    <p>Texas property taxes are among the highest in the nation. Many homeowners are paying more than they should because their appraisal district overvalued their home. We analyze your property and guide you through the entire appeal process — at no upfront cost.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>Submit your property details</strong>
+          <span>Takes less than 2 minutes — just your address and appraisal value.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>Receive your free report</strong>
+          <span>We email you a comparable-market analysis within 24 hours.</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>We handle the appeal</strong>
+          <span>Our team files and negotiates on your behalf. You keep the savings.</span>
+        </div>
+      </div>
     </div>
-  </header>
+  </div>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
+  <!-- FORM CARD -->
+  <div class="form-card">
+    <div id="form-section">
+      <h3>Get Your Free Report</h3>
+      <p class="sub">Enter your property info and we'll be in touch within 24 hours.</p>
+
+      <div class="field row2">
         <div>
-          <p class="eyebrow">Simple starter site for GitHub Pages</p>
-          <h1>Smart tax-saving guidance for Texas families and business owners.</h1>
-          <p class="lead">
-            Launch your brand now with a clean one-page website, then migrate later to Railway
-            when you want forms, automation, and backend features.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contact">Get Started</a>
-            <a class="btn btn-secondary" href="#services">View Services</a>
-          </div>
-          <p class="fine-print">Disclaimer: This website is a placeholder starter. Replace the text below with your actual services, credentials, and contact details before going live.</p>
+          <label for="street_num">House Number</label>
+          <input type="text" id="street_num" placeholder="e.g. 4521" />
         </div>
-
-        <aside class="hero-card" aria-label="Key highlights">
-          <div class="stat">
-            <span class="stat-label">Built for</span>
-            <strong>GitHub Pages now</strong>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Easy later move</span>
-            <strong>Railway-ready</strong>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Best use today</span>
-            <strong>Fast landing page</strong>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container three-up">
-        <article class="card">
-          <h2>Personal Tax Planning</h2>
-          <p>Help households understand deduction opportunities, life-event planning, and year-round tax-saving decisions.</p>
-        </article>
-        <article class="card">
-          <h2>Small Business Support</h2>
-          <p>Guide business owners through entity-related tax considerations, recordkeeping habits, and planning checkpoints.</p>
-        </article>
-        <article class="card">
-          <h2>Proactive Strategy</h2>
-          <p>Focus on forward-looking tax efficiency instead of waiting until filing season to identify missed opportunities.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="services" class="section section-alt">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Services</p>
-          <h2>What Lone Star Tax Save can help visitors understand</h2>
-        </div>
-        <div class="service-grid">
-          <article class="card">
-            <h3>Tax-saving review</h3>
-            <p>Review a household or small-business situation and identify areas where tax-saving opportunities may exist.</p>
-          </article>
-          <article class="card">
-            <h3>Year-round planning</h3>
-            <p>Support decisions around withholding, estimated payments, retirement contributions, and timing of major expenses.</p>
-          </article>
-          <article class="card">
-            <h3>Business-owner checklist</h3>
-            <p>Offer a practical checklist for documentation, bookkeeping readiness, and common deduction categories.</p>
-          </article>
-          <article class="card">
-            <h3>Pre-filing readiness</h3>
-            <p>Help clients gather documents, flag questions early, and reduce last-minute tax-season stress.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="how-it-works" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">How it works</p>
-          <h2>A simple three-step process</h2>
-        </div>
-        <div class="steps">
-          <article class="step card">
-            <span class="step-number">1</span>
-            <h3>Tell us your situation</h3>
-            <p>Homeowner, W-2 household, independent contractor, or small-business owner.</p>
-          </article>
-          <article class="step card">
-            <span class="step-number">2</span>
-            <h3>Get a planning review</h3>
-            <p>See what areas may deserve attention now rather than at the deadline.</p>
-          </article>
-          <article class="step card">
-            <span class="step-number">3</span>
-            <h3>Take action confidently</h3>
-            <p>Use a clear plan, organized records, and a cleaner path into filing season.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt">
-      <div class="container split">
         <div>
-          <p class="eyebrow">Why this setup</p>
-          <h2>GitHub Pages is a good temporary home.</h2>
-          <p>
-            For a simple marketing site, GitHub Pages is fast, reliable, and inexpensive because it serves static HTML, CSS,
-            and JavaScript directly from a GitHub repository.
-          </p>
-          <ul class="clean-list">
-            <li>No backend needed for a basic landing page</li>
-            <li>Easy custom domain connection</li>
-            <li>Easy migration later to Railway when you need forms or apps</li>
-          </ul>
-        </div>
-        <div class="quote-card">
-          <p class="quote">“Start with a simple page that looks credible. Add backend features later only when you actually need them.”</p>
-          <p class="quote-source">Recommended launch path for this domain</p>
+          <label for="street_name">Street Name</label>
+          <input type="text" id="street_name" placeholder="e.g. Brazos Blvd" />
         </div>
       </div>
-    </section>
 
-    <section id="faq" class="section">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">FAQ</p>
-          <h2>Common questions</h2>
-        </div>
-        <div class="faq-grid">
-          <article class="card">
-            <h3>Can this be moved to Railway later?</h3>
-            <p>Yes. Keep the same domain and update DNS later to point to Railway when you want a backend or dynamic forms.</p>
-          </article>
-          <article class="card">
-            <h3>Can I add a booking form now?</h3>
-            <p>Not natively with plain GitHub Pages. For now, use an email link, Calendly, Google Form, or a third-party form tool.</p>
-          </article>
-          <article class="card">
-            <h3>Can I edit the content easily?</h3>
-            <p>Yes. Open <code>index.html</code> and replace headings, service text, and contact info with your real copy.</p>
-          </article>
-        </div>
+      <div class="field">
+        <label for="city">City</label>
+        <input type="text" id="city" placeholder="e.g. College Station" />
       </div>
-    </section>
 
-    <section id="contact" class="section section-dark">
-      <div class="container contact-wrap">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Ready to customize this site?</h2>
-          <p>
-            Replace the placeholder email and phone below before launch.
-          </p>
-        </div>
-        <div class="contact-card">
-          <p><strong>Email:</strong> <a href="mailto:replace-me@lonestartaxsave.com">replace-me@lonestartaxsave.com</a></p>
-          <p><strong>Phone:</strong> <a href="tel:+10000000000">(000) 000-0000</a></p>
-          <p><strong>Service area:</strong> Texas</p>
-          <a class="btn btn-primary btn-full" href="mailto:replace-me@lonestartaxsave.com?subject=Inquiry%20from%20Lone%20Star%20Tax%20Save">Email Us</a>
-        </div>
+      <div class="field">
+        <label for="appraisal">Appraisal District Value ($)</label>
+        <input type="number" id="appraisal" placeholder="e.g. 385000" min="0" />
       </div>
-    </section>
-  </main>
 
-  <footer class="site-footer">
-    <div class="container footer-wrap">
-      <p>© <span id="year"></span> Lone Star Tax Save. All rights reserved.</p>
-      <p class="footer-note">Starter site for GitHub Pages.</p>
+      <div class="field">
+        <label for="email">Your Email Address</label>
+        <input type="email" id="email" placeholder="you@example.com" />
+      </div>
+
+      <button class="btn" onclick="handleSubmit()">
+        <span class="star">★</span> Submit — Get My Free Report
+      </button>
+      <p class="privacy-note">🔒 Your information is private and never sold. Texas residents only.</p>
     </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <!-- SUCCESS MESSAGE -->
+    <div class="success-box" id="success-section">
+      <div class="success-icon">✓</div>
+      <h3>You're all set!</h3>
+      <p>
+        Thank you for submitting your property. We'll review your appraisal details and send a
+        <span class="hl">personalized report and appeal instructions</span>
+        to your email within <span class="hl">24 hours</span>.
+      </p>
+      <p style="margin-top:14px;">Keep an eye on your inbox — and check your spam folder just in case.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <strong>LoneStarTaxSave.com</strong> &nbsp;·&nbsp; Helping Texas Homeowners Fight Unfair Property Taxes<br>
+  <span style="margin-top:6px;display:inline-block">© 2026 LoneStarTaxSave. All rights reserved.</span>
+</footer>
+
+<script>
+  function handleSubmit() {
+    const streetNum   = document.getElementById('street_num').value.trim();
+    const streetName  = document.getElementById('street_name').value.trim();
+    const city        = document.getElementById('city').value.trim();
+    const appraisal   = document.getElementById('appraisal').value.trim();
+    const email       = document.getElementById('email').value.trim();
+
+    if (!streetNum || !streetName || !city || !appraisal || !email) {
+      alert('Please fill in all fields before submitting.');
+      return;
+    }
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRx.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    if (isNaN(appraisal) || Number(appraisal) <= 0) {
+      alert('Please enter a valid appraisal value.');
+      return;
+    }
+
+    document.getElementById('form-section').style.display = 'none';
+    const box = document.getElementById('success-section');
+    box.style.display = 'block';
+  }
+</script>
 </body>
 </html>
