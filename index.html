@@ -440,7 +440,21 @@
   .faq-a ul { margin: 6px 0 0; padding-left: 20px; }
   .faq-a li { margin-bottom: 6px; }
   .faq-a p { margin: 0 0 6px; }
-  </style>
+    .cached-banner {
+    display: none;
+    background: #fff8e6;
+    border: 2px solid #c9933a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    color: #1a2742;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+  .cached-banner.show { display: block; }
+  .cached-banner a { color: #b94c2a; font-weight: 600; }
+</style>
 </head>
 <body>
 
@@ -490,6 +504,11 @@
   <!-- FORM CARD -->
   <div class="form-card">
     <div id="form-section">
+      <div class="cached-banner" id="cached-banner">
+        📬 <strong>We already sent a report for this address!</strong><br>
+        Please check your inbox and spam folder. Need help? Contact us at
+        <a href="mailto:support@lonestartaxsave.com">support@lonestartaxsave.com</a>
+      </div>
       <h3>Get Your Property Tax Appeal Report</h3>
       <p class="sub">Enter your property info and we'll send your Property Tax Appeal Report and filing instructions within 1 hour.</p>
 
@@ -527,13 +546,13 @@
     <!-- SUCCESS MESSAGE -->
     <div class="success-box" id="success-section">
       <div class="success-icon">✓</div>
-      <h3>You're all set!</h3>
+      <h3>Report Sent!</h3>
       <p>
-        Thank you for submitting your property. We'll review your appraisal details and send a
-        <span class="hl">Property Tax Appeal Report and filing instructions</span>
-        to your email within <span class="hl">1 hour</span>.
+        Your <span class="hl">Property Tax Appeal Report</span> has been sent to your email.
+        Please allow up to <span class="hl">1 hour</span> for delivery.
       </p>
-      <p style="margin-top:14px;">📬 Keep an eye on your inbox — and <strong>please check your spam or junk folder</strong> as our email may be filtered. If you find it there, mark it as <strong>"Not Spam"</strong> to ensure future emails reach you directly.</p>
+      <p style="margin-top:14px;">📬 <strong>Please check your inbox now.</strong> If you don't see it, check your <strong>spam or junk folder</strong> and mark it as <strong>"Not Spam"</strong>.</p>
+      <p style="margin-top:14px;">💬 Questions? Reply to the email or contact us at <a href="mailto:support@lonestartaxsave.com" style="color:var(--rust);font-weight:600;">support@lonestartaxsave.com</a></p>
       <button class="btn" style="margin-top:24px;" onclick="resetForm()">
         <span class="star">★</span> Submit Another Property
       </button>
@@ -605,6 +624,13 @@
         const data = await response.json();
         if (data.error) {
           alert(data.error);
+          btn.disabled = false;
+          btn.innerHTML = '<span class="star">★</span> Submit — Get My Appeal Report';
+          return;
+        }
+        if (data.cached) {
+          document.getElementById('cached-banner').classList.add('show');
+          document.getElementById('cached-banner').scrollIntoView({behavior: 'smooth'});
           btn.disabled = false;
           btn.innerHTML = '<span class="star">★</span> Submit — Get My Appeal Report';
           return;
