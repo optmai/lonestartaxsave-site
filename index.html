@@ -544,8 +544,8 @@
       </div>
 
       <div class="field">
-        <label for="invite_code">Invitation Code</label>
-        <input type="text" id="invite_code" placeholder="Enter your invitation code" />
+        <label for="invite_code">Promo Code</label>
+        <input type="text" id="invite_code" placeholder="Enter your promo code" />
       </div>
       <input type="text" name="_gotcha" style="display:none">
       <button class="btn" onclick="handleSubmit()">
@@ -594,7 +594,7 @@
     const streetFull = document.getElementById('street_full').value.trim();
     const inviteCode = document.getElementById('invite_code').value.trim();
     if (inviteCode !== 'Texas2026') {
-      alert('Invalid invitation code. Please check your code and try again.');
+      alert('Invalid promo code. Please check your code and try again.');
       return;
     }
     const city       = document.getElementById('city').value.trim();
