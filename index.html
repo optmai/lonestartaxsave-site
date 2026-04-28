@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LoneStarTaxSave — Maintenance</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231a2742'/><text y='.9em' font-size='72' x='50%' text-anchor='middle' dominant-baseline='top' fill='%23c9933a'>★</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tan:    #f5efe4;
+      --cream:  #fdf8f0;
+      --rust:   #b94c2a;
+      --rust2:  #d95f35;
+      --navy:   #1a2742;
+      --gold:   #c9933a;
+      --mid:    #6b7280;
+      --border: #ddd4c2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HERO ───────────────────────────────────── */
+    header {
+      position: relative;
+      background: var(--navy);
+      padding: 72px 24px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(201,147,58,.06) 40px,
+          rgba(201,147,58,.06) 41px
+        );
+    }
+    header::after {
+      content: '★';
+      position: absolute;
+      top: -40px; right: -30px;
+      font-size: 260px;
+      color: rgba(201,147,58,.07);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .site-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -.5px;
+      position: relative;
+    }
+    .site-name span { color: var(--gold); }
+
+    .tagline {
+      margin-top: 14px;
+      font-size: clamp(.95rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255,255,255,.72);
+      letter-spacing: .5px;
+      position: relative;
+    }
+
+    .star-divider {
+      margin: 28px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+    }
+    .star-divider::before,
+    .star-divider::after {
+      content: '';
+      width: 80px; height: 1px;
+      background: var(--gold);
+      opacity: .5;
+    }
+    .star-divider span { color: var(--gold); font-size: 1.1rem; }
+
+    /* ── VALUE STRIP ────────────────────────────── */
+    .value-strip {
+      background: var(--rust);
+      padding: 18px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+    }
+    .value-strip p {
+      color: #fff;
+      font-size: .88rem;
+      font-weight: 500;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .value-strip p::before { content: '✓'; font-size: 1rem; color: var(--gold); }
+
+    /* ── MAIN ───────────────────────────────────── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 72px 24px 80px;
+    }
+
+    /* ── MAINTENANCE CARD ───────────────────────── */
+    .maintenance-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 56px 48px;
+      box-shadow: 0 4px 40px rgba(26,39,66,.08);
+      position: relative;
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+    .maintenance-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rust), var(--gold));
+      border-radius: 12px 12px 0 0;
+    }
+
+    .maintenance-icon {
+      width: 80px; height: 80px;
+      background: var(--tan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+      font-size: 2.2rem;
+      border: 2px solid var(--border);
+    }
+
+    .maintenance-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .maintenance-card h2 em {
+      font-style: normal;
+      color: var(--rust);
+    }
+
+    .maintenance-card p {
+      font-size: .97rem;
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 12px;
+    }
+
+    .maintenance-card p:last-of-type { margin-bottom: 0; }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      margin: 24px auto;
+      opacity: .6;
+    }
+
+    .contact-line {
+      margin-top: 28px;
+      font-size: .85rem;
+      color: var(--mid);
+    }
+    .contact-line a {
+      color: var(--rust);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .contact-line a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: .82rem;
+    }
+    footer strong { color: rgba(255,255,255,.75); }
+
+    @media (max-width: 600px) {
+      .maintenance-card { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="site-name">Lone<span>Star</span>TaxSave</div>
+    <p class="tagline">Brazos County Property Tax Appraisal Analysis</p>
+    <div class="star-divider"><span>★</span></div>
+  </header>
+
+  <div class="value-strip">
+    <p>Free Analysis Report</p>
+    <p>Comparable Property Data</p>
+    <p>Brazos County 2026</p>
+  </div>
+
+  <main>
+    <div class="maintenance-card">
+      <div class="maintenance-icon">🔧</div>
+      <h2>We'll Be Back <em>Shortly</em></h2>
+      <div class="divider"></div>
+      <p>We are currently performing scheduled maintenance to improve our service. We apologize for the inconvenience.</p>
+      <p>Please check back soon — we expect to be back online shortly. Thank you for your patience.</p>
+      <p class="contact-line">
+        Questions? Contact us at
+        <a href="mailto:support@lonestartaxsave.com">support@lonestartaxsave.com</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <strong>LoneStarTaxSave.com</strong> &nbsp;·&nbsp;
+    Brazos County Property Tax Analysis &nbsp;·&nbsp;
+    &copy; 2026
+  </footer>
+
+</body>
+</html>
