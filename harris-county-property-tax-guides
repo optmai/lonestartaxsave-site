@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harris County Property Tax Guides</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #222; }
+    header { background: #1f4e79; color: white; padding: 20px; }
+    nav { background: #f4f4f4; padding: 10px 20px; position: sticky; top: 0; }
+    nav a { margin-right: 15px; color: #1f4e79; text-decoration: none; font-weight: bold; }
+    section { padding: 40px 20px; border-bottom: 1px solid #eee; }
+    h1 { margin-top: 0; }
+    h2 { color: #1f4e79; }
+    .cta { background: #e8f0fe; padding: 15px; border-left: 4px solid #1f4e79; margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    table, th, td { border: 1px solid #ccc; }
+    th, td { padding: 8px; text-align: left; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Harris County Property Tax Guides</h1>
+  <p>Educational resources for property tax protests and comparable analysis in Texas</p>
+</header>
+
+<nav>
+  <a href="#protest">Tax Protest Guide</a>
+  <a href="#comps">Comparable Sales</a>
+  <a href="#appeal">HCAD Appeal Guide</a>
+</nav>
+
+<!-- PAGE 1 -->
+<section id="protest">
+  <h2>How to Protest Property Taxes in Harris County (2026 Guide)</h2>
+  <p>If your property value seems too high in Harris County, Texas, you may be able to file a property tax protest with the Harris Central Appraisal District (HCAD).</p>
+
+  <h3>Step 1: Review Your Appraisal Notice</h3>
+  <ul>
+    <li>Check appraised vs prior year value</li>
+    <li>Check for homestead exemption</li>
+    <li>Compare with nearby homes</li>
+  </ul>
+
+  <h3>Step 2: Understand Protest Grounds</h3>
+  <p>Common grounds include market value and unequal appraisal.</p>
+
+  <h3>Step 3: Gather Evidence</h3>
+  <ul>
+    <li>Comparable properties</li>
+    <li>Photos or condition issues</li>
+    <li>Repair estimates (if applicable)</li>
+  </ul>
+
+  <h3>Step 4: File Protest</h3>
+  <p>Submit your protest before the deadline listed by HCAD.</p>
+
+  <div class="cta">
+    Use comparable analysis tools to strengthen your protest evidence.
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section id="comps">
+  <h2>Using Comparable Sales for Harris County Tax Appeals</h2>
+  <p>Comparable properties (“comps”) help demonstrate whether your home is assessed fairly.</p>
+
+  <h3>Example Comparison</h3>
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Sq Ft</th>
+      <th>Value</th>
+      <th>$/Sq Ft</th>
+    </tr>
+    <tr>
+      <td>Subject Property</td>
+      <td>3000</td>
+      <td>$550,000</td>
+      <td>$183</td>
+    </tr>
+    <tr>
+      <td>Comp 1</td>
+      <td>2980</td>
+      <td>$495,000</td>
+      <td>$166</td>
+    </tr>
+    <tr>
+      <td>Comp 2</td>
+      <td>3050</td>
+      <td>$502,000</td>
+      <td>$165</td>
+    </tr>
+  </table>
+
+  <h3>What Makes a Good Comp?</h3>
+  <ul>
+    <li>Same neighborhood</li>
+    <li>Similar size and age</li>
+    <li>Similar property type</li>
+  </ul>
+
+  <div class="cta">
+    Run a comparable property report to identify potential over-assessment.
+  </div>
+</section>
+
+<!-- PAGE 3 -->
+<section id="appeal">
+  <h2>How to Appeal Your HCAD Assessment</h2>
+  <p>If you disagree with your appraisal from HCAD, you may file a formal protest.</p>
+
+  <h3>Step 1: Review Assessment</h3>
+  <ul>
+    <li>Market value estimate</li>
+    <li>Year-over-year changes</li>
+  </ul>
+
+  <h3>Step 2: Choose Protest Basis</h3>
+  <p>Market value or unequal appraisal are common bases.</p>
+
+  <h3>Step 3: Submit Evidence</h3>
+  <ul>
+    <li>Comparable homes</li>
+    <li>Supporting documents</li>
+  </ul>
+
+  <h3>Step 4: Review Process</h3>
+  <p>Many cases are resolved during informal review discussions.</p>
+
+  <div class="cta">
+    Use data-driven comparable analysis to prepare stronger appeal evidence.
+  </div>
+</section>
+
+</body>
+</html>
