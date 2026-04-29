@@ -544,85 +544,51 @@
       <h3>Get Your Property Tax Analysis Report</h3>
       <p class="sub">Select your county to get started.</p>
 
-      <!-- STEP 1: County Selection -->
+      <!-- STEP 1: County Search & Select -->
       <div id="county-step">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;">
-          <button onclick="selectCounty('Brazos')" class="county-btn" id="btn-brazos">
-            <span style="font-size:1.5rem;">🏫</span>
-            <strong>Brazos County</strong>
-            <span>Bryan / College Station</span>
-          </button>
-          <button onclick="selectCounty('Harris')" class="county-btn" id="btn-harris">
-            <span style="font-size:1.5rem;">🏙️</span>
-            <strong>Harris County</strong>
-            <span>Houston area</span>
-          </button>
+        <div style="position:relative;margin-top:16px;">
+          <input type="text" id="county-search" placeholder="🔍 Search your county (e.g. Harris, Dallas...)"
+            oninput="filterCounties(this.value)"
+            style="width:100%;padding:14px 16px;border:1.5px solid #ddd4c2;border-radius:8px;
+                   font-size:1rem;color:#1a2742;box-sizing:border-box;"/>
         </div>
+        <div id="county-list" style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;max-height:320px;overflow-y:auto;">
+          <!-- populated by JS -->
+        </div>
+        <p id="county-none" style="display:none;color:var(--mid);font-size:0.9rem;margin-top:12px;text-align:center;">
+          No matching county found. We're expanding — contact us at support@lonestartaxsave.com.
+        </p>
       </div>
 
-      <!-- STEP 2: Brazos County Form -->
-      <div id="brazos-form" style="display:none;">
-        <div id="brazos-error" style="display:none;background:#fff5f5;border:1.5px solid #e53e3e;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#c53030;font-size:0.92rem;line-height:1.6;"></div>
+      <!-- STEP 2: Single Dynamic Form -->
+      <div id="county-form" style="display:none;">
+        <div id="form-error" style="display:none;background:#fff5f5;border:1.5px solid #e53e3e;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#c53030;font-size:0.92rem;line-height:1.6;"></div>
         <div style="display:flex;align-items:center;gap:10px;margin:16px 0 20px;">
           <button onclick="backToCounty()" style="background:none;border:none;cursor:pointer;color:var(--rust);font-size:0.9rem;font-weight:600;padding:0;">← Change County</button>
-          <span style="color:var(--mid);font-size:0.9rem;">Brazos County — Bryan / College Station</span>
+          <span id="county-label" style="color:var(--mid);font-size:0.9rem;"></span>
         </div>
         <div class="field">
-          <label for="brazos_street">Street Address</label>
-          <input type="text" id="brazos_street" placeholder="Match the address on your appraisal notice" />
+          <label for="f_street">Street Address</label>
+          <input type="text" id="f_street" placeholder="Match the address on your appraisal notice" />
+        </div>
+        <div class="field" id="f_id_field">
+          <label id="f_id_label" for="f_id">Property ID <span style="color:#6b7280;font-weight:400;font-size:0.85rem;">(Optional)</span></label>
+          <input type="text" id="f_id" placeholder="" />
         </div>
         <div class="field">
-          <label for="brazos_prop_id">Property ID <span style="color:#6b7280;font-weight:400;font-size:0.85rem;">(Optional)</span></label>
-          <input type="text" id="brazos_prop_id" placeholder="e.g. 123456 — found on your appraisal notice" />
+          <label for="f_city">City</label>
+          <input type="text" id="f_city" placeholder="e.g. College Station" />
         </div>
         <div class="field">
-          <label for="brazos_city">City</label>
-          <input type="text" id="brazos_city" placeholder="e.g. College Station" />
+          <label for="f_email">Your Email Address</label>
+          <input type="email" id="f_email" placeholder="you@example.com" />
         </div>
         <div class="field">
-          <label for="brazos_email">Your Email Address</label>
-          <input type="email" id="brazos_email" placeholder="you@example.com" />
-        </div>
-        <div class="field">
-          <label for="brazos_invite">Promo Code</label>
-          <input type="text" id="brazos_invite" placeholder="Enter your promo code" />
+          <label for="f_invite">Promo Code</label>
+          <input type="text" id="f_invite" placeholder="Enter your promo code" />
         </div>
         <input type="text" name="_gotcha" style="display:none">
-        <button class="btn" id="brazos-submit-btn" onclick="handleSubmit('Brazos')">
-          <span class="star">★</span> Submit — Get My Analysis Report
-        </button>
-        <p class="privacy-note">🔒 Your information is private and never sold. Texas residents only.</p>
-      </div>
-
-      <!-- STEP 2: Harris County Form -->
-      <div id="harris-form" style="display:none;">
-        <div id="harris-error" style="display:none;background:#fff5f5;border:1.5px solid #e53e3e;border-radius:8px;padding:12px 16px;margin-bottom:16px;color:#c53030;font-size:0.92rem;line-height:1.6;"></div>
-        <div style="display:flex;align-items:center;gap:10px;margin:16px 0 20px;">
-          <button onclick="backToCounty()" style="background:none;border:none;cursor:pointer;color:var(--rust);font-size:0.9rem;font-weight:600;padding:0;">← Change County</button>
-          <span style="color:var(--mid);font-size:0.9rem;">Harris County — Houston area</span>
-        </div>
-        <div class="field">
-          <label for="harris_street">Street Address</label>
-          <input type="text" id="harris_street" placeholder="Match the address on your appraisal notice" />
-        </div>
-        <div class="field">
-          <label for="harris_acct">Account Number <span style="color:#6b7280;font-weight:400;font-size:0.85rem;">(Optional)</span></label>
-          <input type="text" id="harris_acct" placeholder="e.g. 0450090000029 — 13 digits on your HCAD notice" />
-        </div>
-        <div class="field">
-          <label for="harris_city">City</label>
-          <input type="text" id="harris_city" placeholder="e.g. Houston" />
-        </div>
-        <div class="field">
-          <label for="harris_email">Your Email Address</label>
-          <input type="email" id="harris_email" placeholder="you@example.com" />
-        </div>
-        <div class="field">
-          <label for="harris_invite">Promo Code</label>
-          <input type="text" id="harris_invite" placeholder="Enter your promo code" />
-        </div>
-        <input type="text" name="_gotcha" style="display:none">
-        <button class="btn" id="harris-submit-btn" onclick="handleSubmit('Harris')">
+        <button class="btn" id="submit-btn" onclick="handleSubmit()">
           <span class="star">★</span> Submit — Get My Analysis Report
         </button>
         <p class="privacy-note">🔒 Your information is private and never sold. Texas residents only.</p>
@@ -661,138 +627,192 @@
 </footer>
 
 <script>
-  const BRAZOS_API = 'https://api.lonestartaxsave.com/submit';
-  const HARRIS_API = 'https://harris-api.lonestartaxsave.com/submit';
+  // ── COUNTY CONFIG — add new counties here only ─────────────────────────────
+  const COUNTIES = [
+    {
+      name:        'Brazos County',
+      description: 'Bryan / College Station',
+      api:         'https://api.lonestartaxsave.com/submit',
+      id_label:    'Property ID',
+      id_placeholder: 'e.g. 123456 — found on your appraisal notice',
+      id_field:    'prop_id',
+      city_hint:   'e.g. College Station',
+      timing:      '1 hour',
+    },
+    {
+      name:        'Harris County',
+      description: 'Houston area',
+      api:         'https://harris-api.lonestartaxsave.com/submit',
+      id_label:    'Account Number',
+      id_placeholder: 'e.g. 0450090000029 — 13 digits on your HCAD notice',
+      id_field:    'acct',
+      city_hint:   'e.g. Houston',
+      timing:      'minutes',
+    },
+    {
+      name:        'Dallas County',
+      description: 'Dallas / Irving area',
+      api:         'https://dallas-api.lonestartaxsave.com/submit',
+      id_label:    'Account Number',
+      id_placeholder: 'e.g. 00000123456789 — found on your DCAD notice',
+      id_field:    'acct',
+      city_hint:   'e.g. Dallas',
+      timing:      'minutes',
+    },
+  ];
 
-  function selectCounty(county) {
-    document.getElementById('county-step').style.display   = 'none';
-    document.getElementById('brazos-form').style.display   = county === 'Brazos' ? 'block' : 'none';
-    document.getElementById('harris-form').style.display   = county === 'Harris' ? 'block' : 'none';
-    document.getElementById('btn-brazos').classList.toggle('selected', county === 'Brazos');
-    document.getElementById('btn-harris').classList.toggle('selected', county === 'Harris');
-  }
+  let selectedCounty = null;
 
-  function backToCounty() {
-    document.getElementById('county-step').style.display   = 'block';
-    document.getElementById('brazos-form').style.display   = 'none';
-    document.getElementById('harris-form').style.display   = 'none';
-    document.getElementById('btn-brazos').classList.remove('selected');
-    document.getElementById('btn-harris').classList.remove('selected');
-  }
-
-  function resetForm() {
-    // Brazos
-    document.getElementById('brazos_street').value  = '';
-    document.getElementById('brazos_prop_id').value = '';
-    document.getElementById('brazos_city').value    = '';
-    document.getElementById('brazos_email').value   = '';
-    document.getElementById('brazos_invite').value  = '';
-    // Harris
-    document.getElementById('harris_street').value  = '';
-    document.getElementById('harris_acct').value    = '';
-    document.getElementById('harris_city').value    = '';
-    document.getElementById('harris_email').value   = '';
-    document.getElementById('harris_invite').value  = '';
-    // Reset view
-    document.getElementById('success-section').style.display = 'none';
-    document.getElementById('form-section').style.display    = 'block';
-    backToCounty();
-    ['brazos-submit-btn','harris-submit-btn'].forEach(id => {
-      const btn = document.getElementById(id);
-      if (btn) { btn.disabled = false; btn.innerHTML = '<span class="star">★</span> Submit — Get My Analysis Report'; }
+  // ── BUILD COUNTY LIST ──────────────────────────────────────────────────────
+  function buildCountyList(filter = '') {
+    const list    = document.getElementById('county-list');
+    const noMatch = document.getElementById('county-none');
+    const filtered = COUNTIES.filter(c =>
+      c.name.toLowerCase().includes(filter.toLowerCase()) ||
+      c.description.toLowerCase().includes(filter.toLowerCase())
+    );
+    list.innerHTML = '';
+    if (filtered.length === 0) {
+      noMatch.style.display = 'block';
+      return;
+    }
+    noMatch.style.display = 'none';
+    filtered.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'county-btn';
+      btn.innerHTML = `<strong>${c.name}</strong><span>${c.description}</span>`;
+      btn.onclick = () => selectCounty(c);
+      list.appendChild(btn);
     });
   }
 
-  async function handleSubmit(county) {
-    const isBrazos = county === 'Brazos';
-    const prefix   = isBrazos ? 'brazos' : 'harris';
-    const apiUrl   = isBrazos ? BRAZOS_API : HARRIS_API;
+  function filterCounties(val) {
+    buildCountyList(val);
+  }
 
-    const street     = document.getElementById(`${prefix}_street`).value.trim();
-    const city       = document.getElementById(`${prefix}_city`).value.trim();
-    const email      = document.getElementById(`${prefix}_email`).value.trim();
-    const inviteCode = document.getElementById(`${prefix}_invite`).value.trim();
-    const idField    = isBrazos ? document.getElementById('brazos_prop_id').value.trim()
-                                : document.getElementById('harris_acct').value.trim();
+  // ── SELECT COUNTY ──────────────────────────────────────────────────────────
+  function selectCounty(county) {
+    selectedCounty = county;
+    document.getElementById('county-step').style.display  = 'none';
+    document.getElementById('county-form').style.display  = 'block';
+    document.getElementById('county-label').textContent   = `${county.name} — ${county.description}`;
+    document.getElementById('f_city').placeholder         = county.city_hint;
+    document.getElementById('f_id_label').innerHTML       =
+      `${county.id_label} <span style="color:#6b7280;font-weight:400;font-size:0.85rem;">(Optional)</span>`;
+    document.getElementById('f_id').placeholder           = county.id_placeholder;
+    // Clear form
+    ['f_street','f_id','f_city','f_email','f_invite'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    const errDiv = document.getElementById('form-error');
+    errDiv.style.display = 'none';
+    errDiv.textContent   = '';
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = false;
+    btn.innerHTML = '<span class="star">★</span> Submit — Get My Analysis Report';
+  }
+
+  function backToCounty() {
+    selectedCounty = null;
+    document.getElementById('county-step').style.display = 'block';
+    document.getElementById('county-form').style.display = 'none';
+    document.getElementById('county-search').value       = '';
+    buildCountyList();
+  }
+
+  function resetForm() {
+    document.getElementById('success-section').style.display = 'none';
+    document.getElementById('form-section').style.display    = 'block';
+    backToCounty();
+  }
+
+  // ── SUBMIT ─────────────────────────────────────────────────────────────────
+  async function handleSubmit() {
+    if (!selectedCounty) return;
+
+    const street     = document.getElementById('f_street').value.trim();
+    const city       = document.getElementById('f_city').value.trim();
+    const email      = document.getElementById('f_email').value.trim();
+    const inviteCode = document.getElementById('f_invite').value.trim();
+    const idVal      = document.getElementById('f_id').value.trim();
 
     if (inviteCode !== 'Texas2026') {
-      alert('Invalid promo code. Please check your code and try again.');
+      showError('Invalid promo code. Please check your code and try again.');
       return;
     }
     if (!street || !city || !email) {
-      alert('Please fill in all required fields before submitting.');
+      showError('Please fill in all required fields before submitting.');
       return;
     }
     const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRx.test(email)) {
-      alert('Please enter a valid email address.');
+      showError('Please enter a valid email address.');
       return;
     }
 
-    const btnId = `${prefix}-submit-btn`;
-    const btn   = document.getElementById(btnId);
-    btn.disabled = true;
+    const btn = document.getElementById('submit-btn');
+    btn.disabled  = true;
     btn.innerHTML = 'Submitting…';
-
-    // Clear any previous inline error
-    const errDiv = document.getElementById(`${prefix}-error`);
-    if (errDiv) { errDiv.style.display = 'none'; errDiv.textContent = ''; }
+    const errDiv  = document.getElementById('form-error');
+    errDiv.style.display = 'none';
+    errDiv.textContent   = '';
 
     const body = {
       street_address: street,
       invite_code:    inviteCode,
-      city:           city,
-      email:          email,
+      city,
+      email,
+      [selectedCounty.id_field]: idVal,
     };
-    if (isBrazos) body.prop_id = idField;
-    else          body.acct    = idField;
 
     try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
+      const response = await fetch(selectedCounty.api, {
+        method:  'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(body)
+        body:    JSON.stringify(body),
       });
 
       if (response.ok) {
         const data = await response.json();
         if (data.error) {
-          const errDiv = document.getElementById(`${prefix}-error`);
-          if (errDiv) {
-            errDiv.textContent = data.error;
-            errDiv.style.display = 'block';
-            errDiv.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-          } else {
-            alert(data.error);
-          }
-          btn.disabled = false;
+          showError(data.error);
+          btn.disabled  = false;
           btn.innerHTML = '<span class="star">★</span> Submit — Get My Analysis Report';
           return;
         }
         if (data.cached) {
           document.getElementById('cached-banner').classList.add('show');
-          document.getElementById('cached-banner').scrollIntoView({behavior: 'smooth'});
-          btn.disabled = false;
+          document.getElementById('cached-banner').scrollIntoView({behavior:'smooth'});
+          btn.disabled  = false;
           btn.innerHTML = '<span class="star">★</span> Submit — Get My Analysis Report';
           return;
         }
         document.getElementById('form-section').style.display    = 'none';
         document.getElementById('success-section').style.display = 'block';
-        // Update timing message based on county
         const timing = document.getElementById('report-timing');
-        if (timing) timing.textContent = isBrazos ? '1 hour' : 'minutes';
+        if (timing) timing.textContent = selectedCounty.timing;
       } else {
-        const data = await response.json();
-        alert(data?.errors?.[0]?.message || 'Submission failed. Please try again.');
-        btn.disabled = false;
+        const data = await response.json().catch(() => ({}));
+        showError(data?.errors?.[0]?.message || 'Submission failed. Please try again.');
+        btn.disabled  = false;
         btn.innerHTML = '<span class="star">★</span> Submit — Get My Analysis Report';
       }
     } catch (err) {
-      alert('Network error. Please check your connection and try again.');
-      btn.disabled = false;
+      showError('Network error. Please check your connection and try again.');
+      btn.disabled  = false;
       btn.innerHTML = '<span class="star">★</span> Submit — Get My Analysis Report';
     }
   }
+
+  function showError(msg) {
+    const errDiv = document.getElementById('form-error');
+    errDiv.textContent   = msg;
+    errDiv.style.display = 'block';
+    errDiv.scrollIntoView({behavior:'smooth', block:'nearest'});
+  }
+
+  // ── INIT ───────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => buildCountyList());
 </script>
 
 
