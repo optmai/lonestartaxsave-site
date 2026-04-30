@@ -613,12 +613,31 @@
 </main>
 
 <!-- Legal Disclaimer Banner -->
-  <div style="background:#fdf8f0;border-top:2px solid #ddd4c2;padding:20px 32px;text-align:center;">
-    <p style="margin:0 auto;font-size:0.82rem;color:#6b7280;max-width:800px;line-height:1.7;">
-      <strong style="color:#1a2742;">⚖️ Legal Disclaimer:</strong> LoneStarTaxSave provides informational reports only and does not constitute legal or tax advice. We are not attorneys or licensed tax consultants. Results are estimates based on publicly available data and do not guarantee appeal outcomes. Users are solely responsible for filing their own protests. By using this service, you agree to our
-      <a href="#" onclick="document.getElementById('termsModal').style.display='flex';return false;" style="color:#b94c2a;font-weight:600;">Terms of Service</a> and
-      <a href="#" onclick="document.getElementById('privacyModal').style.display='flex';return false;" style="color:#b94c2a;font-weight:600;">Privacy Policy</a>.
-    </p>
+  <div style="background:#fdf8f0;border-top:2px solid #ddd4c2;padding:20px 32px;">
+    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:24px;">
+      <div style="flex-shrink:0;">
+        <svg width="120" height="120" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="200" r="196" fill="#1a2742"/>
+          <circle cx="200" cy="200" r="196" fill="none" stroke="#c9933a" stroke-width="7"/>
+          <circle cx="200" cy="200" r="179" fill="none" stroke="#c9933a" stroke-width="1.5" opacity="0.4"/>
+          <rect x="80" y="200" width="240" height="112" fill="#1a2742" stroke="#f0e8d8" stroke-width="3"/>
+          <polygon points="62,204 200,78 338,204" fill="#f0e8d8"/>
+          <polygon points="200,96 209,122 237,122 215,138 224,164 200,148 176,164 185,138 163,122 191,122" fill="#f5c842"/>
+          <text x="200" y="262" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" letter-spacing="0.5">
+            <tspan fill="#ffffff">Lone</tspan><tspan fill="#f5c842">Star</tspan><tspan fill="#ffffff">Tax</tspan><tspan fill="#f5c842">Save</tspan>
+          </text>
+          <path id="dArc" d="M 50,200 A 150,150 0 0,1 350,200" fill="none"/>
+          <text font-family="Arial,sans-serif" font-size="12" fill="#c9933a" letter-spacing="2.5" opacity="0.9">
+            <textPath href="#dArc" startOffset="50%" text-anchor="middle">TEXAS  ·  PROPERTY TAX  ·  ANALYSIS</textPath>
+          </text>
+        </svg>
+      </div>
+      <p style="margin:0;font-size:0.82rem;color:#6b7280;line-height:1.7;">
+        <strong style="color:#1a2742;">⚖️ Legal Disclaimer:</strong> LoneStarTaxSave provides informational reports only and does not constitute legal or tax advice. We are not attorneys or licensed tax consultants. Results are estimates based on publicly available data and do not guarantee appeal outcomes. Users are solely responsible for filing their own protests. By using this service, you agree to our
+        <a href="#" onclick="document.getElementById('termsModal').style.display='flex';return false;" style="color:#b94c2a;font-weight:600;">Terms of Service</a> and
+        <a href="#" onclick="document.getElementById('privacyModal').style.display='flex';return false;" style="color:#b94c2a;font-weight:600;">Privacy Policy</a>.
+      </p>
+    </div>
   </div>
 
   <footer>
@@ -663,7 +682,7 @@
       name:        'Collin County',
       description: 'Plano / Frisco / McKinney area',
       api:         'https://collin-api.lonestartaxsave.com/submit',
-      id_label:    'Account Number',
+      id_label:    'Property ID',
       id_placeholder: 'e.g. 2761347 — found on your CCAD notice',
       id_field:    'acct',
       city_hint:   'e.g. Plano',
