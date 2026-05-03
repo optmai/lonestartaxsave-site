@@ -319,6 +319,21 @@
       line-height: 1.7;
     }
     .success-box .hl { color: var(--rust); font-weight: 500; }
+    .referral-btn {
+      padding: 9px 16px;
+      border: 1.5px solid var(--navy);
+      border-radius: 20px;
+      background: white;
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .referral-btn:hover { background: var(--navy); color: white; }
+    .referral-btn.selected { background: var(--navy); color: white; }
+    .referral-btn:disabled { opacity: 0.5; cursor: default; }
 
     /* ── FOOTER ─────────────────────────────────── */
     footer {
@@ -620,6 +635,21 @@
       </p>
       <p style="margin-top:14px;">📬 Please check your <strong>inbox and spam/junk folder</strong>. If you find it in spam, mark it as <strong>"Not Spam"</strong> to ensure future emails reach you directly.</p>
       <p style="margin-top:14px;">💬 Questions? Contact us at <a href="mailto:support@lonestartaxsave.com" style="color:var(--rust);font-weight:600;">support@lonestartaxsave.com</a></p>
+
+      <!-- How did you hear about us -->
+      <div id="referral-section" style="margin-top:24px;padding:18px 20px;background:#fdf8f0;border-radius:10px;border:1.5px solid #ddd4c2;text-align:left;">
+        <p style="font-size:0.95rem;font-weight:600;color:var(--navy);margin-bottom:12px;">How did you hear about us?</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;">
+          <button onclick="selectReferral(this, 'Friends/Family')"  class="referral-btn">👥 Friends / Family</button>
+          <button onclick="selectReferral(this, 'Nextdoor')"        class="referral-btn">🏘️ Nextdoor</button>
+          <button onclick="selectReferral(this, 'Facebook')"        class="referral-btn">📘 Facebook</button>
+          <button onclick="selectReferral(this, 'Reddit')"          class="referral-btn">🤖 Reddit</button>
+          <button onclick="selectReferral(this, 'Google Search')"   class="referral-btn">🔍 Google Search</button>
+          <button onclick="selectReferral(this, 'Other')"           class="referral-btn">💬 Other</button>
+        </div>
+        <p id="referral-thanks" style="display:none;margin-top:12px;font-size:0.88rem;color:var(--rust);font-weight:600;">Thanks for letting us know! 🙏</p>
+      </div>
+
       <button class="btn" style="margin-top:24px;" onclick="resetForm()">
         <span class="star">★</span> Submit Another Property
       </button>
@@ -783,9 +813,27 @@
     document.getElementById('county-none').style.display = 'none';
   }
 
+  function selectReferral(btn, source) {
+    // Highlight selected, disable all
+    const btns = document.querySelectorAll('.referral-btn');
+    btns.forEach(b => { b.classList.remove('selected'); b.disabled = true; });
+    btn.classList.add('selected');
+    document.getElementById('referral-thanks').style.display = 'block';
+    // POST to backend
+    fetch('https://api.lonestartaxsave.com/referral', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source: source })
+    }).catch(() => {}); // silent fail — not critical
+  }
+
   function resetForm() {
     document.getElementById('success-section').style.display = 'none';
     document.getElementById('form-section').style.display    = 'block';
+    // Reset referral box
+    const btns = document.querySelectorAll('.referral-btn');
+    btns.forEach(b => { b.classList.remove('selected'); b.disabled = false; });
+    document.getElementById('referral-thanks').style.display = 'none';
     backToCounty();
   }
 
